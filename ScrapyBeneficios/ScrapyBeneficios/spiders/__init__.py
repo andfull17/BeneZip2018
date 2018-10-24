@@ -19,12 +19,8 @@ class QuotesSpider(scrapy.Spider):
             stores = response.xpath('//section[@class="staticInfoTiles"][' + str(i) + ']//li/h2/text()').extract()
             for s in range(1,len(stores)+1):
                 link_to_description = response.xpath('//section[@class="staticInfoTiles"][' + str(i) + ']//li[' + str(s) + ']//a[@class="button"]/@href').extract_first()
-                entries.append((categories[i-1], stores[s-1], link_to_description))
-                o.write(str((categories[i-1], stores[s-1], link_to_description)) + '\n')
-                
+                description = response.xpath('//section[@class="staticInfoTiles"][' + str(i) + ']//li[' + str(s) + ']//div[@class="promo-text"]//*/text()').extract()[1]
+                entries.append((categories[i-1], stores[s-1], link_to_description, description))
+                o.write(str((categories[i-1], stores[s-1], link_to_description, description)) + '\n')
 
-        
-
-
-#response.xpath('//section[@class="staticInfoTiles"][3]//li/h2/text()')[0]
 
