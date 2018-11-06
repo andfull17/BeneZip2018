@@ -16,6 +16,6 @@ class QuotesSpider(scrapy.Spider):
         entries = []
         categories = response.xpath('//div[@class="item"]//div[@class="bd"]/h4/text()').extract()
         for i in range(1,len(categories)+1):
-            description = response.xpath('//div[@class="item"][' + str(i) + ']//div[@class="bd"]/p/text()').extract()
+            description = response.xpath('//div[@class="item"][' + str(i) + ']//div[@class="bd"]/p/text()').extract_first()
             entries.append((categories[i-1], description))
             o.write(str((categories[i-1], description)) + '\n')
