@@ -34,7 +34,7 @@ class QuotesSpider(scrapy.Spider):
         category = response.meta['category']
         item_name = response.meta['item_name'] 
         item_category = []
-        item_title = response.xpath('//div[@class="col-xs-12 col-md-10 hidden-xs"]/h3/text()').extract_first()
+        item_title = response.xpath('//div[@class="col-xs-12 col-md-10 hidden-xs"]/h3/text()').extract_first().split(': ',1)[1]
         entries.append((category, item_name, item_title))
         o.write(str((category, item_name, item_title)) + '\n')
 
