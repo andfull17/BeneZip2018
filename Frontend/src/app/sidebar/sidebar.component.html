@@ -1,16 +1,26 @@
 <div class="sidenav">
-  <a href="#about">About</a>
+  <form class="form-inline md-form form-sm">
+    <i class="fa fa-search" style="color: white" aria-hidden="true"></i>
+    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInputDirective>
+  </form>
+
+  <button class="dropdown-btn">Categorías
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#" (click)="getCategoryItems('hogar')">Hogar</a>
+    <a href="#" (click)="getCategoryItems('gastronomía')">Gastronomía</a>
+    <a href="#" (click)="getCategoryItems('enseñanza')">Enseñanza</a>
+    <a href="#" (click)="getCategoryItems('salud')">Salud</a>
+    <a href="#" (click)="getCategoryItems('tecnología')">Tecnología</a>
+    <a href="#" (click)="getCategoryItems('vestimenta')">Vestimenta</a>
+    <a href="#" (click)="getCategoryItems('transporte')">Transporte</a>
+    <a href="#" (click)="getCategoryItems('estética')">Estética</a>
+    <a href="#" (click)="getCategoryItems('turismo')">Turismo</a>
+  </div>
+
+  <a href="#about">Abo.ut</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
   <a href="#contact">Contact</a>
-</div>
-
-<div class="main">
-  <h2>Sidebar</h2>
-  <p>This sidebar is of full height (100%) and always shown.</p>
-  <p>Scroll down the page to see the result.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
 </div>
