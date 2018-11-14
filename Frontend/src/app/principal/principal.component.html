@@ -1,11 +1,47 @@
 
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <app-sidebar (makeItemsRequest)="getCategoryItems($event)"></app-sidebar>
-    </div>
-    <div *ngIf="results.length>0" class="col-10">
-      <app-cards [benefits]="results"></app-cards>
+<div id="principal">
+  <button class="openbtn" (click)="toggleSidebar()">&#9776;</button>
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-2">
+
+        <!-- SIDEBAR -->
+        <div class="sidenav" id="sidebar">
+
+          <form class="form-inline md-form form-sm">
+            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInputDirective>
+            <i class="fa fa-search" style="color: white" aria-hidden="true"></i>
+          </form>
+
+          <button class="dropdown-btn">
+            Categorías
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="#" (click)="getCategoryItems('hogar')">Hogar</a>
+            <a href="#" (click)="getCategoryItems('gastronomía')">Gastronomía</a>
+            <a href="#" (click)="getCategoryItems('enseñanza')">Enseñanza</a>
+            <a href="#" (click)="getCategoryItems('salud')">Salud</a>
+            <a href="#" (click)="getCategoryItems('tecnología')">Tecnología</a>
+            <a href="#" (click)="getCategoryItems('vestimenta')">Vestimenta</a>
+            <a href="#" (click)="getCategoryItems('transporte')">Transporte</a>
+            <a href="#" (click)="getCategoryItems('estética')">Estética</a>
+            <a href="#" (click)="getCategoryItems('turismo')">Turismo</a>
+          </div>
+
+          <a href="#about">Abo.ut</a>
+          <a href="#services">Services</a>
+          <a href="#clients">Clients</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <!-- END SIDEBAR -->
+        <!--<app-sidebar id="sidebar" (makeItemsRequest)="getCategoryItems($event)" (closeSidebar)="closeNav()"></app-sidebar>-->
+      </div>
+      <div *ngIf="results.length>0" class="col-10">
+        <app-cards [benefits]="results"></app-cards>
+      </div>
     </div>
   </div>
 </div>
