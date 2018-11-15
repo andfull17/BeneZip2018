@@ -35,10 +35,12 @@ export class PrincipalComponent implements OnInit {
     if (this.sidebarOpened) {
       document.getElementById("sidebar").style.width = "0";
       document.getElementById("principal").style.marginLeft = "0";
+      document.getElementById("sidebarButton").innerHTML = "&#9776;";
       this.sidebarOpened = false;
     } else {
       document.getElementById("sidebar").style.width = "250px";
       document.getElementById("principal").style.marginLeft = "250px";
+      document.getElementById("sidebarButton").innerHTML = "&#10539;";
       this.sidebarOpened = true;
     }
     
