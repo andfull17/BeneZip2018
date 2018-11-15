@@ -48,11 +48,6 @@
         <!-- SIDEBAR -->
         <div class="sidenav" id="sidebar">
 
-          <form class="form-inline md-form form-sm">
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInputDirective>
-            <i class="fa fa-search" style="color: white" aria-hidden="true"></i>
-          </form>
-
           <button class="dropdown-btn">
             Categorías
             <i class="fa fa-caret-down"></i>
@@ -77,6 +72,8 @@
         <!-- END SIDEBAR -->
         <!--<app-sidebar id="sidebar" (makeItemsRequest)="getCategoryItems($event)" (closeSidebar)="closeNav()"></app-sidebar>-->
       </div>
+    </div>
+    <div class="row">
       <div *ngIf="results.length>0" class="col-10">
         <app-cards [benefits]="results"></app-cards>
       </div>
