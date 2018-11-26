@@ -9,46 +9,48 @@ import { ElasticsearchService } from '../../services/elasticsearch.service';
 export class PrincipalComponent implements OnInit {
 
   results: any[] = [];
-  sidebarOpened: boolean = false;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
+  //para realizar consulta a elasticsearch:
+  selectedCategory: string;
+  selectedCard: string;
+  other: string; //texto libre
 
   constructor(private elasticSearch: ElasticsearchService) { }
 
   ngOnInit() {
-    //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
-      dropdown[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-          dropdownContent.style.display = "none";
-        } else {
-          dropdownContent.style.display = "block";
-        }
-      });
-    }
+    this.getCategoryItems('*');
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Hogar'},
+      { item_id: 2, item_text: 'Gastronomía' },
+      { item_id: 3, item_text: 'Enseñanza' },
+      { item_id: 4, item_text: 'Salud' },
+      { item_id: 5, item_text: 'Tecnología' },
+      { item_id: 6, item_text: 'Vestimenta' },
+      { item_id: 7, item_text: 'Transporte' },
+      { item_id: 8, item_text: 'Estética' },
+      { item_id: 9, item_text: 'Turismo' }
+      ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Todos',
+      unSelectAllText: 'Ninguno',
+      itemsShowLimit: 2,
+      allowSearchFilter: true
+    };
   }
 
-  toggleSidebar() {
-    if (this.sidebarOpened) {
-      document.getElementById("sidebar").style.width = "0";
-      document.getElementById("principal").style.marginLeft = "0";
-      document.getElementById("sidebarButton").innerHTML = "&#9776;";
-      this.sidebarOpened = false;
-    } else {
-      document.getElementById("sidebar").style.width = "250px";
-      document.getElementById("principal").style.marginLeft = "250px";
-      document.getElementById("sidebarButton").innerHTML = "&#10539;";
-      this.sidebarOpened = true;
-    }
-    
+  onItemSelect(item: any) {
+    console.log(item);
   }
 
-  closeNav() {
-    
-  } 
+  onSelectAll(items: any) {
+    console.log(items);
+  }
 
   getCategoryItems(categoryName) {
 

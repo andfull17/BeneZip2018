@@ -7,7 +7,7 @@ import { CardsComponent } from './cards/cards.component';
 import { ElasticsearchService } from '../services/elasticsearch.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PrincipalComponent } from './principal/principal.component';
-import { SidebarModule } from 'ng-sidebar';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { SidebarModule } from 'ng-sidebar';
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
-    SidebarModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgMultiSelectDropDownModule
   ],
   providers: [ElasticsearchService],
   bootstrap: [AppComponent]

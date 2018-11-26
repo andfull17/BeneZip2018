@@ -1,81 +1,46 @@
-
-
-  
-  <div id="principal" class="container">
-
-    <!-- NAV BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button id="sidebarButton" class="openbtn" (click)="toggleSidebar()">&#9776;</button>
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
-    <!-- END NAV BAR -->
-
-    <div class="row">
-      <div class="col-2">
-
-        <!-- SIDEBAR -->
-        <div class="sidenav" id="sidebar">
-
-          <button class="dropdown-btn">
-            Categorías
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-container">
-            <a href="#" (click)="getCategoryItems('hogar')">Hogar</a>
-            <a href="#" (click)="getCategoryItems('gastronomía')">Gastronomía</a>
-            <a href="#" (click)="getCategoryItems('enseñanza')">Enseñanza</a>
-            <a href="#" (click)="getCategoryItems('salud')">Salud</a>
-            <a href="#" (click)="getCategoryItems('tecnología')">Tecnología</a>
-            <a href="#" (click)="getCategoryItems('vestimenta')">Vestimenta</a>
-            <a href="#" (click)="getCategoryItems('transporte')">Transporte</a>
-            <a href="#" (click)="getCategoryItems('estética')">Estética</a>
-            <a href="#" (click)="getCategoryItems('turismo')">Turismo</a>
+<div style="background-image: url('assets/images/people.jpg'); padding: 5%; background-size: cover;">
+  <div class="container-fluid" style="width:100%">
+      <div class="row">
+        <div class="col-sm" >
+          <div style="background-color: white; margin: 0.375rem; border-radius: 5px">
+            <ng-multiselect-dropdown
+            [placeholder]="'Tipo de tarjeta'"
+            [data]="[
+            { item_id: 1, item_text: 'Débito'},
+            { item_id: 2, item_text: 'Crédito' }
+            ]"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
           </div>
-
-          <a href="#about">Abo.ut</a>
-          <a href="#services">Services</a>
-          <a href="#clients">Clients</a>
-          <a href="#contact">Contact</a>
         </div>
-        <!-- END SIDEBAR -->
-        <!--<app-sidebar id="sidebar" (makeItemsRequest)="getCategoryItems($event)" (closeSidebar)="closeNav()"></app-sidebar>-->
+        <div class="col-sm">
+          <div style="background-color: white; margin: 0.375rem; border-radius: 5px">
+            <ng-multiselect-dropdown
+            [placeholder]="'Categoría'"
+            [data]="dropdownList"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <div class="col-sm">
+          <input type="text" class="form-control" placeholder="Ingrese su búsqueda" style="margin: 0.375rem">
+        </div>
+        <div class="col-sm">
+          <button type="button" class="btn btn-primary">BUSCAR</button>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div *ngIf="results.length>0" class="col-10">
-        <app-cards [benefits]="results"></app-cards>
-      </div>
+</div>
+<br>
+<!--<img class="img-responsive" src="assets/images/people.jpg"> -->
+  <div id="principal" class="container">
+    <div *ngIf="results.length>0" style="display:inline-block">
+      <app-cards [benefits]="results"></app-cards>
     </div>
   </div>
