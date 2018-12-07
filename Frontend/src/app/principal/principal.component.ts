@@ -17,6 +17,7 @@ export class PrincipalComponent implements OnInit {
     banks: [],
     cards: []
   };
+  sortSettings = {};
 
   //para realizar consulta a elasticsearch:
   selectedCategory: string;
@@ -45,7 +46,14 @@ export class PrincipalComponent implements OnInit {
       selectAllText: 'Todos',
       unSelectAllText: 'Ninguno',
       itemsShowLimit: 2,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+      searchPlaceholderText: 'Buscar'
+    };
+    this.sortSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      itemsShowLimit: 2
     };
   }
 

@@ -105,11 +105,12 @@ body {
 .btn-buscar {
   display: inline-block;
   border-radius: 4px;
-  background-color: #262626;
-  border: none;
+  background-color: #393738;
+  border-color: #746767;
+  border-width: 2px;
   color: #FFFFFF;
   text-align: center;
-  padding: 10px;
+  padding: 6px;
   width: 100%;
   transition: all 0.5s;
   cursor: pointer;
@@ -163,3 +164,4 @@ body {
   display: -ms-flexbox !important;
   display: flex !important;
 }
+

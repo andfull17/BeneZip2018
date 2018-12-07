@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 320px; background-image:url('assets/images/banner.jpg'); padding: 2%; background-size: cover;">
+<div style="width: 100%; height: 320px; background-image:url('assets/images/banner.jpg'); padding: 2%; background-size: contain; background-repeat: no-repeat">
   <div class="container-fluid" style="width:100%; margin-top: 90px">
       <div class="row">
         <div class="col-sm">
@@ -51,14 +51,27 @@
             </ng-multiselect-dropdown>
           </div>
         </div>
-       
-        
         <div class="col-sm">
           <button (click)="search()" type="button" class="btn btn-buscar"><span>BUSCAR</span></button>
         </div>
       </div>
     </div>
-    <br>
+</div>
+<div class="row" style="margin-top:1%">
+  
+  <div class="col-md-3"></div>
+  <h2 class="col-md-3" style="padding-left:5%; text-align:center">{{results.length}} resultados</h2>
+  <div class="dropdown-banner col-md-2" style="float:right; padding:0; margin-left:4%">
+    <ng-multiselect-dropdown [placeholder]="'Ordenar por'"
+      [data]="[
+        { item_id: 1, item_text: 'Débito'},
+        { item_id: 2, item_text: 'Crédito' }
+      ]"
+      [settings]="sortSettings"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)">
+  </ng-multiselect-dropdown>
+  </div>
 </div>
 <br>
 <!--<img class="img-responsive" src="assets/images/people.jpg"> -->
