@@ -13,13 +13,15 @@ csvfiles = [f for f in listdir(dir) if (isfile(join(dir, f)) and f.endswith('.cs
 
 for csvf in csvfiles:
 	with open(csvf, encoding="utf8") as csvfile:
-		entries = csv.reader(csvfile, delimiter=',')
+		entries = csv.reader(csvfile, delimiter=';')
 		for row in entries:
 			content = {
-						'category': row[0],
-						'store': row[1],
+                        'cardtype': row[0],
+						'category': row[1],
+						'store': row[2],
 						'description': row[3],
-						'uri': row[2]
+						'uri': row[4],
+                        'image': row[5]
 					}
 			json_content = json.dumps(content)
 			elasticsearch.request('POST', '/' + csvf.replace('.csv','') +'/benefits', json_content, headers)
