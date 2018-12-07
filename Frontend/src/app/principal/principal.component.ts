@@ -12,6 +12,11 @@ export class PrincipalComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  filters = {
+    categories: [],
+    banks: [],
+    cards: []
+  };
 
   //para realizar consulta a elasticsearch:
   selectedCategory: string;
@@ -44,12 +49,105 @@ export class PrincipalComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
+  onItemSelectCategory(item: any) {
+    var category: string = item.item_text;
+    var i: number = this.filters.categories.indexOf(category);
+    if(i >= 0){
+      this.filters.categories.splice(i);
+    }
+    else{
+      this.filters.categories.push(category);
+    }
   }
 
-  onSelectAll(items: any) {
-    console.log(items);
+  onItemDeSelectCategory(item: any) {
+    var card: string = item.item_text;
+    var i: number = this.filters.categories.indexOf(card);
+    if(i >= 0){
+      this.filters.categories.splice(i);
+    }
+    else{
+      console.log('Item no estaba guardado')
+    }
+  }
+
+  onItemSelectBank(item: any) {
+    var bank: string = item.item_text;
+    var i: number = this.filters.banks.indexOf(bank);
+    if(i >= 0){
+      this.filters.banks.splice(i);
+    }
+    else{
+      this.filters.banks.push(bank);
+    }
+  }
+
+  onItemDeSelectBank(item: any) {
+    var card: string = item.item_text;
+    var i: number = this.filters.banks.indexOf(card);
+    if(i >= 0){
+      this.filters.banks.splice(i);
+    }
+    else{
+      console.log('Item no estaba guardado')
+    }
+  }
+
+  onItemSelectCard(item: any) {
+    var card: string = item.item_text;
+    var i: number = this.filters.cards.indexOf(card);
+    if(i >= 0){
+      this.filters.cards.splice(i);
+    }
+    else{
+      this.filters.cards.push(card);
+    }
+  }
+
+  onItemDeSelectCard(item: any) {
+    var card: string = item.item_text;
+    var i: number = this.filters.cards.indexOf(card);
+    if(i >= 0){
+      this.filters.cards.splice(i);
+    }
+    else{
+      console.log('Item no estaba guardado')
+    }
+  }
+
+  onSelectAllCategories(items: any) {
+    items.forEach(element => {
+      this.filters.categories.push(element.item_text);
+    });
+  }
+
+  onDeSelectAllCategories(items: any) {
+    this.filters.categories = [];
+  }
+
+  onSelectAllCards(items: any) {
+    items.forEach(element => {
+      this.filters.cards.push(element.item_text);
+    });
+  }
+
+  onDeSelectAllCards(items: any) {
+    this.filters.cards = [];
+  }
+
+  onSelectAllBanks(items: any) {
+    items.forEach(element => {
+      this.filters.banks.push(element.item_text);
+    });
+  }
+
+  onDeSelectAllBanks(items: any) {
+    this.filters.banks = [];
+  }
+
+  search(){
+    console.log(this.filters)
+    //llamar a elasticsearch
   }
 
   getCategoryItems(categoryName) {
@@ -57,7 +155,7 @@ export class PrincipalComponent implements OnInit {
     this.elasticSearch.getItems(categoryName).subscribe(data => {
 
       this.results = data.hits.hits;
-      console.log(this.results);
+      //console.log(this.results);
     });
   }
 

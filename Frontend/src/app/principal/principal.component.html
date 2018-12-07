@@ -10,8 +10,10 @@
             [placeholder]="'Categoría'"
             [data]="dropdownList"
             [settings]="dropdownSettings"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelect)="onItemSelectCategory($event)"
+            (onDeSelect)="onItemDeSelectCategory($event)"
+            (onSelectAll)="onSelectAllCategories($event)"
+            (onDeSelectAll)="onDeSelectAllCategories($event)"
             >
             </ng-multiselect-dropdown>
           </div>
@@ -26,8 +28,9 @@
             { item_id: 3, item_text: 'SCOTIABANK' }
             ]"
             [settings]="dropdownSettings"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelect)="onItemSelectBank($event)"
+            (onDeSelect)="onItemDeSelectBank($event)"
+            (onSelectAll)="onSelectAllBanks($event)"
             >
             </ng-multiselect-dropdown>
           </div>
@@ -41,8 +44,9 @@
             { item_id: 2, item_text: 'Crédito' }
             ]"
             [settings]="dropdownSettings"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelect)="onItemSelectCard($event)"
+            (onDeSelect)="onItemDeSelectCard($event)"
+            (onSelectAll)="onSelectAllCards($event)"
             >
             </ng-multiselect-dropdown>
           </div>
@@ -50,7 +54,7 @@
        
         
         <div class="col-sm">
-          <button type="button" class="btn btn-buscar"><span>BUSCAR</span></button>
+          <button (click)="search()" type="button" class="btn btn-buscar"><span>BUSCAR</span></button>
         </div>
       </div>
     </div>
