@@ -15,7 +15,8 @@ export class PrincipalComponent implements OnInit {
   filters = {
     categories: [],
     banks: [],
-    cards: []
+    cards: [],
+    searchText: ""    
   };
   sortSettings = {};
 
@@ -27,7 +28,9 @@ export class PrincipalComponent implements OnInit {
   constructor(private elasticSearch: ElasticsearchService) { }
 
   ngOnInit() {
+
     this.getCategoryItems('*');
+
     this.dropdownList = [
       { item_id: 1, item_text: 'Hogar'},
       { item_id: 2, item_text: 'Gastronomía' },
@@ -38,7 +41,8 @@ export class PrincipalComponent implements OnInit {
       { item_id: 7, item_text: 'Transporte' },
       { item_id: 8, item_text: 'Estética' },
       { item_id: 9, item_text: 'Turismo' }
-      ];
+    ];
+
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -49,6 +53,7 @@ export class PrincipalComponent implements OnInit {
       allowSearchFilter: true,
       searchPlaceholderText: 'Buscar'
     };
+
     this.sortSettings = {
       singleSelection: true,
       idField: 'item_id',
@@ -61,7 +66,7 @@ export class PrincipalComponent implements OnInit {
     var category: string = item.item_text;
     var i: number = this.filters.categories.indexOf(category);
     if(i >= 0){
-      this.filters.categories.splice(i);
+      this.filters.categories.splice(i,1);
     }
     else{
       this.filters.categories.push(category);
@@ -69,10 +74,10 @@ export class PrincipalComponent implements OnInit {
   }
 
   onItemDeSelectCategory(item: any) {
-    var card: string = item.item_text;
-    var i: number = this.filters.categories.indexOf(card);
+    var category: string = item.item_text;
+    var i: number = this.filters.categories.indexOf(category);
     if(i >= 0){
-      this.filters.categories.splice(i);
+      this.filters.categories.splice(i,1);
     }
     else{
       console.log('Item no estaba guardado')
@@ -83,7 +88,7 @@ export class PrincipalComponent implements OnInit {
     var bank: string = item.item_text;
     var i: number = this.filters.banks.indexOf(bank);
     if(i >= 0){
-      this.filters.banks.splice(i);
+      this.filters.banks.splice(i,1);
     }
     else{
       this.filters.banks.push(bank);
@@ -91,10 +96,10 @@ export class PrincipalComponent implements OnInit {
   }
 
   onItemDeSelectBank(item: any) {
-    var card: string = item.item_text;
-    var i: number = this.filters.banks.indexOf(card);
+    var bank: string = item.item_text;
+    var i: number = this.filters.banks.indexOf(bank);
     if(i >= 0){
-      this.filters.banks.splice(i);
+      this.filters.banks.splice(i,1);
     }
     else{
       console.log('Item no estaba guardado')
@@ -105,7 +110,7 @@ export class PrincipalComponent implements OnInit {
     var card: string = item.item_text;
     var i: number = this.filters.cards.indexOf(card);
     if(i >= 0){
-      this.filters.cards.splice(i);
+      this.filters.cards.splice(i,1);
     }
     else{
       this.filters.cards.push(card);
@@ -116,7 +121,7 @@ export class PrincipalComponent implements OnInit {
     var card: string = item.item_text;
     var i: number = this.filters.cards.indexOf(card);
     if(i >= 0){
-      this.filters.cards.splice(i);
+      this.filters.cards.splice(i,1);
     }
     else{
       console.log('Item no estaba guardado')
@@ -124,6 +129,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   onSelectAllCategories(items: any) {
+    this.filters.categories = [];
     items.forEach(element => {
       this.filters.categories.push(element.item_text);
     });
@@ -134,6 +140,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   onSelectAllCards(items: any) {
+    this.filters.cards = [];
     items.forEach(element => {
       this.filters.cards.push(element.item_text);
     });
@@ -144,6 +151,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   onSelectAllBanks(items: any) {
+    this.filters.banks = [];
     items.forEach(element => {
       this.filters.banks.push(element.item_text);
     });
@@ -153,8 +161,35 @@ export class PrincipalComponent implements OnInit {
     this.filters.banks = [];
   }
 
-  search(){
+  onItemSelectSort(item: any) {
+
+    switch (item.item_text) {
+
+      case "A-Z":
+
+        this.results.sort(function (a, b) {
+          return a._source.store.localeCompare(b._source.store);
+        })
+        break;
+
+      case "Z-A":
+
+        this.results.sort(function (a, b) {
+          return b._source.store.localeCompare(a._source.store);
+        })
+        break;
+
+    }
+  }
+
+  search() {
+    this.filters.searchText = (<HTMLInputElement>document.getElementById("searchbox")).value;
     console.log(this.filters)
+    this.elasticSearch.getFilteredItems(this.filters).subscribe(data => {
+
+      this.results = data.hits.hits;
+      //console.log(this.results);
+    });
     //llamar a elasticsearch
   }
 
