@@ -2,7 +2,7 @@
   <div class="container-fluid" style="width:100%; margin-top: 90px">
       <div class="row">
         <div class="col-sm">
-          <input type="text" class="form-control" placeholder="Ingrese su búsqueda" style="margin: 0.375rem">
+          <input id="searchbox" type="text" class="form-control" placeholder="Ingrese su búsqueda" style="margin: 0.375rem">
         </div>
          <div class="col-sm">
           <div class="dropdown-banner">
@@ -64,12 +64,13 @@
   <div class="dropdown-banner col-md-2" style="float:right; padding:0; margin-left:4%">
     <ng-multiselect-dropdown [placeholder]="'Ordenar por'"
       [data]="[
-        { item_id: 1, item_text: 'Débito'},
-        { item_id: 2, item_text: 'Crédito' }
+        { item_id: 1, item_text: 'A-Z' },
+        { item_id: 2, item_text: 'Z-A' },
+        { item_id: 3, item_text: '% Mayor a menor'},
+        { item_id: 4, item_text: '% Menor a mayor' }
       ]"
       [settings]="sortSettings"
-      (onSelect)="onItemSelect($event)"
-      (onSelectAll)="onSelectAll($event)">
+      (onSelect)="onItemSelectSort($event)">
   </ng-multiselect-dropdown>
   </div>
 </div>
