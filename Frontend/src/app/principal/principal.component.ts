@@ -19,6 +19,7 @@ export class PrincipalComponent implements OnInit {
     searchText: ""    
   };
   sortSettings = {};
+  order: boolean = true;
 
   //para realizar consulta a elasticsearch:
   selectedCategory: string;
@@ -183,14 +184,17 @@ export class PrincipalComponent implements OnInit {
   }
 
   search() {
+    this.order = false;
     this.filters.searchText = (<HTMLInputElement>document.getElementById("searchbox")).value;
     console.log(this.filters)
     this.elasticSearch.getFilteredItems(this.filters).subscribe(data => {
 
       this.results = data.hits.hits;
+      this.order = true;
       //console.log(this.results);
     });
     //llamar a elasticsearch
+    
   }
 
   getCategoryItems(categoryName) {
