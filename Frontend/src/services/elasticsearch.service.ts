@@ -16,7 +16,13 @@ export class ElasticsearchService {
 
   getFilteredItems(filters: any): Observable<any> {
 
-    var filter: string = "";
+    var filter = {
+      categories: "",
+      cards: ""
+    };
+
+    var filtersList = [];
+
     var indices: string = "";
 
     var isFirstGlobal = true;
@@ -40,13 +46,14 @@ export class ElasticsearchService {
     if (filters.categories.length != 0) {
       filters.categories.forEach(category => {
         if (isFirstLocal) {
-          filter = filter.concat("q=category:", category);
+          filter.categories = filter.categories.concat(category);
           isFirstLocal = false;
-          isFirstGlobal = false;
         } else {
-          filter = filter.concat(",", category);
+          filter.categories = filter.categories.concat("|", category);
         }
       });
+    } else {
+      filter.categories = filter.categories.concat("*");
     }
 
     isFirstLocal = true;
@@ -54,24 +61,34 @@ export class ElasticsearchService {
     if (filters.cards.length != 0) {
       filters.cards.forEach(card => {
         if (isFirstLocal) {
-          if (isFirstGlobal) {
-            filter = filter.concat("q=cardtype:", card);
-            isFirstGlobal = false;
-          } else {
-            filter = filter.concat("&q=cardtype:", card);
-          }
+          filter.cards = filter.cards.concat(card);
           isFirstLocal = false;
         } else {
-          filter = filter.concat(",", card);
+          filter.cards = filter.cards.concat("|", card);
         }
       });
+      filter.cards = filter.cards.concat("|Ambos");
+    } else {
+      filter.cards = filter.cards.concat("*");
     }
 
-    //if (filters.searchText != "") {
-      //filter.concat("q=store:", filters.searchText) esto tiene q ser partial march
-    //}
+    if (filters.searchText != "") {
+      filtersList.push({ match_phrase_prefix: { store: filters.searchText } })
+    }
 
-    return this.http.get<any>('http://localhost:9200/' + indices + '/benefits/_search?' + filter + '&size=1000');
+    filtersList.push({ simple_query_string: { fields: ["category"], query: filter.categories } });
+    filtersList.push({ simple_query_string: { fields: ["cardtype"], query: filter.cards } });
+
+    var body = {
+                  query: {
+                    bool: {
+                      must: filtersList
+                    }
+                  },
+                  "size": 10000
+                }
+
+    return this.http.post<any>('http://localhost:9200/' + indices + '/benefits/_search', body);
     
   }
 }

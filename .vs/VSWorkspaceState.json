@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Frontend",
+    "\\Frontend\\e2e",
+    "\\Frontend\\src",
+    "\\Frontend\\src\\app",
+    "\\Frontend\\src\\app\\cards",
+    "\\Frontend\\src\\app\\principal",
+    "\\Frontend\\src\\services",
+    "\\ScrapyBeneficios"
+  ],
+  "SelectedNode": "\\ScrapyBeneficios\\oca.csv",
+  "PreviewInSolutionExplorer": false
+}
