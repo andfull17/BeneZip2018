@@ -8,7 +8,7 @@ from time import sleep
 elasticsearch = http.client.HTTPConnection('127.0.0.1', 9200)
 headers = {'Content-type': 'application/json'}
 
-dir = 'C:\\Users\\Andrés\\Desktop\\Andrés\\Facultad\\2018-2\\WEBIR\\BeneZip2018\\ScrapyBeneficios'
+dir = 'C:\\Users\\Facundo\\Documents\\fing\\10 decimo semestre\\webir\\BeneZip2018\\ScrapyBeneficios'
 csvfiles = [f for f in listdir(dir) if (isfile(join(dir, f)) and f.endswith('.csv') )]
 
 for csvf in csvfiles:

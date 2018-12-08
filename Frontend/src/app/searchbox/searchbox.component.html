@@ -1,0 +1,14 @@
+<form class="example-form">
+    <div style="background-color: white;
+    border-radius: 10px;">
+      <input id="searchbox" type="text" placeholder="Buscar" aria-label="Number" 
+      matInput [formControl]="searchTerm" [matAutocomplete]="auto" class="form-control"
+      style="margin: 0.375rem; border: 0px">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of searchResult" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </form>
+  

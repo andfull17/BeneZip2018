@@ -20,6 +20,7 @@ export class PrincipalComponent implements OnInit {
   };
   sortSettings = {};
   order: boolean = true;
+  stores: string[] = [];
 
   //para realizar consulta a elasticsearch:
   selectedCategory: string;
@@ -202,6 +203,10 @@ export class PrincipalComponent implements OnInit {
     this.elasticSearch.getItems(categoryName).subscribe(data => {
 
       this.results = data.hits.hits;
+      this.results.forEach(item =>{
+        this.stores.push(item._source.store); 
+      })
+      this.stores.sort();
       //console.log(this.results);
     });
   }

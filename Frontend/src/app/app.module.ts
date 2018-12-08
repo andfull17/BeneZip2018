@@ -8,15 +8,25 @@ import { ElasticsearchService } from '../services/elasticsearch.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PrincipalComponent } from './principal/principal.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SearchboxComponent } from './searchbox/searchbox.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
-    CardsComponent
+    CardsComponent,
+    SearchboxComponent
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
