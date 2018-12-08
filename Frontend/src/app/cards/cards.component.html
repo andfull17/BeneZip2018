@@ -3,9 +3,9 @@
         <!-- Card -->
         <mdb-card>
           <div class="view rgba-white-slight waves-light" mdbWavesEffect
-          style="margin-left:auto; margin-right:auto">
+          style="margin-left:auto; margin-right:auto; height:200px; width:200px">
             <!-- Card img -->
-            <mdb-card-img src={{benefit._source.image}} alt="Card image cap"></mdb-card-img>
+            <img class="img-fluid benefit-card-img" src={{benefit._source.image}} alt="Card image cap" />
             <a href={{benefit._source.uri}} target="_blank">
               <div class="mask"></div>
             </a>
@@ -14,7 +14,7 @@
           <mdb-card-body class="benefit-body">
             <!--Title-->
             <mdb-card-title>
-              <h4>{{benefit._source.store}}</h4>
+              <h4 style="font-size:21px">{{benefit._source.store}}<span style="font-size:15px"> - {{benefit._source.bank.toUpperCase()}}</span></h4>
             </mdb-card-title>
 
             <!--Text-->

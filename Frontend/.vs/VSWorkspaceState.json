@@ -5,9 +5,10 @@
     "\\src\\app",
     "\\src\\app\\cards",
     "\\src\\app\\principal",
-    "\\src\\app\\sidebar",
+    "\\src\\assets",
+    "\\src\\environments",
     "\\src\\services"
   ],
-  "SelectedNode": "\\src\\app\\sidebar\\sidebar.component.css",
+  "SelectedNode": "\\src\\services\\elasticsearch.service.ts",
   "PreviewInSolutionExplorer": false
 }
