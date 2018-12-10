@@ -180,6 +180,20 @@ export class PrincipalComponent implements OnInit {
           return b._source.store.localeCompare(a._source.store);
         })
         break;
+      
+      case "% Mayor a menor":
+
+        this.results.sort(function (a, b) {
+          return b._source.discount - a._source.discount;
+        })
+        break;
+      
+        case "% Menor a mayor":
+
+        this.results.sort(function (a, b) {
+          return a._source.discount - b._source.discount;
+        })
+        break;
 
     }
   }
@@ -204,7 +218,7 @@ export class PrincipalComponent implements OnInit {
 
       this.results = data.hits.hits;
       this.results.forEach(item =>{
-        this.stores.push(item._source.store); 
+        this.stores.push(item._source.store);
       })
       this.stores.sort();
       //console.log(this.results);
