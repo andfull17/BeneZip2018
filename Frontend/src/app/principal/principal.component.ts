@@ -42,7 +42,11 @@ export class PrincipalComponent implements OnInit {
       { item_id: 6, item_text: 'Vestimenta' },
       { item_id: 7, item_text: 'Transporte' },
       { item_id: 8, item_text: 'Estética' },
-      { item_id: 9, item_text: 'Turismo' }
+      { item_id: 9, item_text: 'Turismo' },
+      { item_id: 10, item_text: 'Entretenimiento' },
+      { item_id: 11, item_text: 'Niños' },
+      { item_id: 12, item_text: 'Otros' }
+
     ];
 
     this.dropdownSettings = {
