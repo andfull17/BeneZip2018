@@ -12,6 +12,7 @@ import { SearchboxComponent } from './searchbox/searchbox.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgxPaginationModule
   ],
   providers: [ElasticsearchService],
   bootstrap: [AppComponent]

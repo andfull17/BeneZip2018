@@ -7,9 +7,10 @@
     "\\Frontend\\src\\app",
     "\\Frontend\\src\\app\\cards",
     "\\Frontend\\src\\app\\principal",
+    "\\Frontend\\src\\app\\searchbox",
     "\\Frontend\\src\\services",
     "\\ScrapyBeneficios"
   ],
-  "SelectedNode": "\\ScrapyBeneficios\\oca.csv",
+  "SelectedNode": "\\ScrapyBeneficios\\persistance.py",
   "PreviewInSolutionExplorer": false
 }
