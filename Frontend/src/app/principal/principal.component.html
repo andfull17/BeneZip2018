@@ -59,20 +59,21 @@
     </div>
 </div>
 <div class="row" style="margin-top:1%">
-  
+
   <div class="col-md-3"></div>
-  <h2 *ngIf="order" class="col-md-3" style="padding-left:5%; text-align:center">{{results.length}} resultados</h2>
+  <h2 *ngIf="order && (results.length > 1 || results.length == 0)" class="col-md-3" style="padding-left:5%; text-align:center">{{results.length}} resultados</h2>
+  <h2 *ngIf="order && results.length == 1" class="col-md-3" style="padding-left:5%; text-align:center">{{results.length}} resultado</h2>
   <div *ngIf="order" class="dropdown-banner col-md-2" style="float:right; padding:0; margin-left:4%">
     <ng-multiselect-dropdown [placeholder]="'Ordenar por'"
-      [data]="[
+                             [data]="[
         { item_id: 1, item_text: 'A-Z' },
         { item_id: 2, item_text: 'Z-A' },
         { item_id: 3, item_text: '% Mayor a menor'},
         { item_id: 4, item_text: '% Menor a mayor' }
       ]"
-      [settings]="sortSettings"
-      (onSelect)="onItemSelectSort($event)">
-  </ng-multiselect-dropdown>
+                             [settings]="sortSettings"
+                             (onSelect)="onItemSelectSort($event)">
+    </ng-multiselect-dropdown>
   </div>
 </div>
 <br>
